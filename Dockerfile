@@ -1,5 +1,8 @@
 FROM ubuntu:latest
 ARG FIREFOX_VERSION=52.0
+ENV LC_ALL C
+ENV DEBIAN_FRONTEND noninteractive
+ENV DEBCONF_NONINTERACTIVE_SEEN true
 RUN apt-get update -qqy \
   && apt-get -qqy install bzip2 wget curl \
   && apt-get -y --no-install-recommends install firefox \
@@ -14,3 +17,5 @@ RUN apt-get update -qqy \
   && curl -sL https://deb.nodesource.com/setup_6.x -o nodesource_setup.sh \
   && chmod +x nodesource_setup.sh \
   && ./nodesource_setup.sh && apt-get install nodejs 
+ADD ./scripts/ /opt/
+ENTRYPOINT ["sh", "/opt/start.sh"]
