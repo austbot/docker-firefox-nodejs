@@ -14,6 +14,7 @@ RUN apt-get update -qqy \
   && rm /tmp/firefox.tar.bz2 \
   && mv /opt/firefox /opt/firefox-$FIREFOX_VERSION \
   && ln -fs /opt/firefox-$FIREFOX_VERSION/firefox /usr/bin/firefox \
+  && apt-get install -yqq x11vnc xvfb xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic \
   && curl -sL https://deb.nodesource.com/setup_6.x -o nodesource_setup.sh \
   && chmod +x nodesource_setup.sh \
   && ./nodesource_setup.sh && apt-get install nodejs 
